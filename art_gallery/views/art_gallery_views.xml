@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="art_work_form_view">
+            <field name="name">art.work.form.view</field>
+            <field name="model">art_gallery.art.work</field>
+            <field name="arch" type="xml">
+                <form string="Art Work Form">
+                    <sheet>
+                        <h1><field name="name"/></h1>
+                        
+                        <group name="main_art_work">
+                            <group>
+                                <field name="description"/>
+                                <field name="finished_date"/>
+                                <field name="sold_date"/>
+                            </group>
+                            <group>
+                                <field name="height"/>
+                                <field name="width"/>
+                                <field name="product_id"/>
+                                <field name="art_price"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="art_work_gantt_view">
+            <field name="name">art.work.gantt.view</field>
+            <field name="model">art_gallery.art.work</field>
+            <field name="arch" type="xml">
+                <gantt   date_start="finished_date"
+                         date_stop="sold_date"
+                         default_scale="month"
+                         consolidation="art_price"
+                         consolidation_max="{'product_id': 2}">
+                    
+                </gantt>
+            </field>
+        </record>
+    </data>
+</odoo>
